@@ -30,18 +30,18 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 const screenshots = [
-  "/Screenshot_20260514_130702.png",
-  "/Screenshot_20260514_130923.png",
-  "/Screenshot_20260514_131059.png",
-  "/Screenshot_20260514_131116.png",
-  "/Screenshot_20260514_131147.png",
-  "/Screenshot_20260514_131156.png",
-  "/Screenshot_20260514_131209.png",
-  "/Screenshot_20260514_131226.png",
-  "/Screenshot_20260514_131239.png",
-  "/Screenshot_20260514_131310.png",
-  "/Screenshot_20260514_131330.png",
-  "/Screenshot_20260514_131348.png",
+  "/optimized/Screenshot_20260514_130702.webp",
+  "/optimized/Screenshot_20260514_130923.webp",
+  "/optimized/Screenshot_20260514_131059.webp",
+  "/optimized/Screenshot_20260514_131116.webp",
+  "/optimized/Screenshot_20260514_131147.webp",
+  "/optimized/Screenshot_20260514_131156.webp",
+  "/optimized/Screenshot_20260514_131209.webp",
+  "/optimized/Screenshot_20260514_131226.webp",
+  "/optimized/Screenshot_20260514_131239.webp",
+  "/optimized/Screenshot_20260514_131310.webp",
+  "/optimized/Screenshot_20260514_131330.webp",
+  "/optimized/Screenshot_20260514_131348.webp",
 ];
 
 const features = [
@@ -147,9 +147,11 @@ export default function App() {
           <div className="flex items-center gap-3">
 
             <img
-              src="/sanchay-logo.png"
+              src="/optimized/sanchay-logo.webp"
               alt="logo"
               className="w-12 h-12 rounded-xl"
+              width="48"
+              height="48"
             />
 
             <h2 className="text-2xl font-bold">
@@ -309,9 +311,12 @@ export default function App() {
             <div className="absolute w-[350px] h-[350px] bg-purple-500/30 rounded-full blur-[120px]"></div>
 
             <img
-              src="/Screenshot_20260514_130702.png"
+              src="/optimized/Screenshot_20260514_130702.webp"
               alt="dashboard"
               className="relative w-[290px] md:w-[360px] rounded-[45px] border-[12px] border-black shadow-[0_40px_100px_rgba(139,92,246,0.5)]"
+              width="420"
+              height="930"
+              fetchPriority="high"
             />
 
           </div>
@@ -636,6 +641,10 @@ export default function App() {
                   src={shot}
                   alt="app screenshot"
                   className="rounded-[30px]"
+                  loading={i < 3 ? "eager" : "lazy"}
+                  decoding="async"
+                  width="420"
+                  height="930"
                 />
 
               </div>
@@ -797,8 +806,13 @@ export default function App() {
               <div className="flex items-center gap-4 mb-6">
 
                 <img
-                  src="/sanchay-logo.png"
+                  src="/optimized/sanchay-logo.webp"
+                  alt="Sanchay logo"
                   className="w-16 h-16 rounded-2xl"
+                  loading="lazy"
+                  decoding="async"
+                  width="64"
+                  height="64"
                 />
 
                 <div>
