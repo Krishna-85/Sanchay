@@ -1,8 +1,9 @@
 // src/App.jsx
 
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   ShieldCheck,
+  XCircle,
   Receipt,
   Users,
   Boxes,
@@ -97,6 +98,132 @@ const techStack = [
   "UPI Integration",
 ];
 
+const pricingPlans = [
+  {
+    name: "Basic Sync",
+    price: "₹699",
+    period: "per year",
+    focus: "Data Synchronization & Backup",
+    features: [
+      "Multi-device Sync: Apne business data ko 2 devices ke beech sync karein.",
+      "Shared Inventory: Stock details real-time mein sabhi devices par update hongi.",
+      "Shared Billing: Ek device par bill banayein aur dusre par dekhein.",
+      "Shared History: Poori sales history sabhi synced devices par available hogi.",
+      "Auto Backup: Aapka data cloud par hamesha safe rahega.",
+      "Owner Monitoring (Basic): Remote se apne store ki basic activity check karein.",
+      "Device Limit: Maximum 2 devices support.",
+    ],
+  },
+  {
+    name: "Pro Business",
+    price: "₹1299",
+    period: "per year",
+    focus: "Complete Team & Staff Management",
+    features: [
+      "Everything in Basic Sync: Saare sync aur backup features shamil hain.",
+      "Staff Dashboard: Staff ke liye alag se asaan interface.",
+      "Staff Roles & Permissions: Tai karein ki kaunsa staff kya dekh sakta hai aur kya edit kar sakta hai.",
+      "Kitchen/KOT Display: Restaurant ya cafe ke liye wireless order management system.",
+      "Activity Tracking: Dekhein kis staff ne kab aur kya entry ki.",
+      "GST Reports: Tax calculation aur returns ke liye asaan GST reports generate karein.",
+      "Excel Export: Apne saare data ko Excel sheet mein download karein accounting ke liye.",
+      "Advanced Analytics: Sales trends, profit margins, aur customer behavior ka gehra analysis.",
+      "Priority Sync: Tez data syncing aur fast performance.",
+      "Future AI Features: Aane waale sabhi naye AI-powered features ka access.",
+      "Device Limit: Unlimited devices support.",
+    ],
+  },
+];
+
+const comparisonRows = [
+  {
+    feature: "Offline Billing",
+    free: "yes",
+    basic: "yes",
+    pro: "yes",
+  },
+  {
+    feature: "Product Management",
+    free: "yes",
+    basic: "yes",
+    pro: "yes",
+  },
+  {
+    feature: "Device Sync",
+    free: "no",
+    basic: "Up to 2",
+    pro: "Unlimited",
+  },
+  {
+    feature: "Cloud Auto-Backup",
+    free: "no",
+    basic: "yes",
+    pro: "yes",
+  },
+  {
+    feature: "Shared Inventory",
+    free: "no",
+    basic: "yes",
+    pro: "yes",
+  },
+  {
+    feature: "Shared Billing & History",
+    free: "no",
+    basic: "yes",
+    pro: "yes",
+  },
+  {
+    feature: "Owner Monitoring",
+    free: "no",
+    basic: "Basic",
+    pro: "Advanced",
+  },
+  {
+    feature: "Staff Management",
+    free: "no",
+    basic: "no",
+    pro: "yes",
+  },
+  {
+    feature: "Staff Roles & Permissions",
+    free: "no",
+    basic: "no",
+    pro: "yes",
+  },
+  {
+    feature: "KOT / Kitchen Display",
+    free: "no",
+    basic: "no",
+    pro: "yes",
+  },
+  {
+    feature: "GST & Excel Reports",
+    free: "no",
+    basic: "no",
+    pro: "yes",
+  },
+  {
+    feature: "Advanced Analytics",
+    free: "no",
+    basic: "no",
+    pro: "yes",
+  },
+  {
+    feature: "Future AI Features",
+    free: "no",
+    basic: "no",
+    pro: "yes",
+  },
+];
+
+const policyLinks = [
+  { label: "About Us", href: "#about" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Refund Policy", href: "#refund-policy" },
+  { label: "Contact Us", href: "#contact-us" },
+  { label: "Privacy Policy", href: "#privacy-policy" },
+];
+
 const whatsappNumber = "917078399463";
 
 const defaultDemoMessage =
@@ -104,6 +231,34 @@ const defaultDemoMessage =
 
 const getWhatsAppLink = (message = defaultDemoMessage) =>
   `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+const FeatureStatus = ({ value }) => {
+  if (value === "yes") {
+    return (
+      <CheckCircle2
+        size={20}
+        className="mx-auto text-green-400"
+        aria-label="Included"
+      />
+    );
+  }
+
+  if (value === "no") {
+    return (
+      <XCircle
+        size={20}
+        className="mx-auto text-red-400"
+        aria-label="Not included"
+      />
+    );
+  }
+
+  return (
+    <span className="block text-center text-sm font-semibold text-gray-200">
+      {value}
+    </span>
+  );
+};
 
 export default function App() {
   const [demoForm, setDemoForm] = useState({
@@ -164,6 +319,10 @@ export default function App() {
 
             <a href="#features" className="hover:text-white transition">
               Features
+            </a>
+
+            <a href="#pricing" className="hover:text-white transition">
+              Pricing
             </a>
 
             <a href="#screenshots" className="hover:text-white transition">
@@ -318,6 +477,230 @@ export default function App() {
               height="930"
               fetchPriority="high"
             />
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* ABOUT */}
+
+      <section
+        id="about"
+        className="py-28 bg-[#120c23]"
+      >
+
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[0.85fr_1.15fr] gap-12 items-start">
+
+          <div>
+
+            <div className="inline-flex items-center gap-3 bg-white/10 border border-white/10 backdrop-blur-xl px-5 py-2 rounded-full text-white mb-8">
+
+              <ShieldCheck size={18} />
+
+              About Sanchay
+
+            </div>
+
+            <h2 className="text-5xl md:text-6xl font-black leading-tight">
+              Built For
+              <span className="block text-purple-400">
+                Indian Businesses
+              </span>
+            </h2>
+
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10">
+
+            <p className="text-gray-300 leading-8 text-lg">
+              Sanchay is a leading offline-first billing and Point of Sale
+              (POS) solution designed specifically for Indian small and medium
+              businesses. Our mission is to simplify business management by
+              providing powerful tools that work even without the internet.
+            </p>
+
+            <p className="text-gray-300 leading-8 text-lg mt-6">
+              Developed by Sanchay, by Vaibhav Chauhan, Sanchay empowers shop
+              owners to manage inventory, generate GST-compliant bills, and
+              track sales performance with ease. We believe that technology
+              should be an enabler, not a hurdle, which is why Sanchay offers a
+              clean, intuitive interface that anyone can use.
+            </p>
+
+            <p className="text-gray-300 leading-8 text-lg mt-6">
+              From local Kirana stores to growing retail chains, Sanchay is the
+              trusted partner for thousands of businesses across India.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* PRICING */}
+
+      <section
+        id="pricing"
+        className="max-w-7xl mx-auto px-6 py-28"
+      >
+
+        <div className="text-center mb-16">
+
+          <h2 className="text-5xl md:text-6xl font-black mb-5">
+            Pricing
+          </h2>
+
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+            Clear yearly plans for shops that need offline billing, secure
+            cloud backup, device sync, staff tools, and business reports.
+          </p>
+
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+          {pricingPlans.map((plan) => (
+
+            <div
+              key={plan.name}
+              className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 shadow-[0_20px_80px_rgba(139,92,246,0.12)]"
+            >
+
+              <h3 className="text-3xl font-black">
+                {plan.name}
+              </h3>
+
+              <p className="text-purple-300 font-semibold mt-3">
+                {plan.focus}
+              </p>
+
+              <div className="mt-6 flex items-end gap-3">
+
+                <span className="text-5xl font-black text-purple-400">
+                  {plan.price}
+                </span>
+
+                <span className="text-gray-400 pb-2">
+                  {plan.period}
+                </span>
+
+              </div>
+
+              <div className="space-y-4 mt-8">
+
+                {plan.features.map((feature) => (
+
+                  <div
+                    key={feature}
+                    className="flex items-start gap-3 text-gray-300"
+                  >
+
+                    <CheckCircle2 className="text-purple-400 shrink-0 mt-1" />
+
+                    <span className="leading-7">{feature}</span>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+              <a
+                href={getWhatsAppLink(`Hi Vaibhav, I want to know more about the ${plan.name} plan for Sanchay.`)}
+                className="inline-block mt-9 w-full text-center bg-gradient-to-r from-purple-500 to-indigo-500 px-8 py-4 rounded-2xl text-white font-bold shadow-2xl hover:scale-[1.02] transition"
+              >
+                Choose Plan
+              </a>
+
+            </div>
+
+          ))}
+
+        </div>
+
+        <div className="mt-16">
+
+          <div className="mb-6">
+
+            <h3 className="text-3xl md:text-4xl font-black">
+              Plan Comparison
+            </h3>
+
+            <p className="text-gray-400 mt-3">
+              Compare Free, Basic Sync, and Pro Business features at a glance.
+            </p>
+
+          </div>
+
+          <div className="overflow-x-auto rounded-3xl border border-white/10 bg-white/5">
+
+            <table className="w-full min-w-[760px] border-collapse text-left">
+
+              <thead className="bg-white/10">
+
+                <tr>
+
+                  <th className="w-[34%] border-b border-r border-white/10 px-5 py-5 text-base font-bold">
+                    Features
+                  </th>
+
+                  <th className="border-b border-r border-white/10 px-5 py-5 text-center text-base font-bold">
+                    Free Plan
+                  </th>
+
+                  <th className="border-b border-r border-white/10 px-5 py-5 text-center text-base font-bold">
+                    Basic Sync
+                    <span className="block text-purple-300">
+                      (₹699)
+                    </span>
+                  </th>
+
+                  <th className="border-b border-white/10 px-5 py-5 text-center text-base font-bold">
+                    Pro Business
+                    <span className="block text-purple-300">
+                      (₹1299)
+                    </span>
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                {comparisonRows.map((row) => (
+
+                  <tr
+                    key={row.feature}
+                    className="odd:bg-black/10"
+                  >
+
+                    <td className="border-r border-t border-white/10 px-5 py-4 font-semibold text-gray-100">
+                      {row.feature}
+                    </td>
+
+                    <td className="border-r border-t border-white/10 px-5 py-4">
+                      <FeatureStatus value={row.free} />
+                    </td>
+
+                    <td className="border-r border-t border-white/10 px-5 py-4">
+                      <FeatureStatus value={row.basic} />
+                    </td>
+
+                    <td className="border-t border-white/10 px-5 py-4">
+                      <FeatureStatus value={row.pro} />
+                    </td>
+
+                  </tr>
+
+                ))}
+
+              </tbody>
+
+            </table>
 
           </div>
 
@@ -753,6 +1136,156 @@ export default function App() {
 
       </section>
 
+      {/* POLICIES */}
+
+      <section
+        id="refund-policy"
+        className="py-28 bg-[#120c23]"
+      >
+
+        <div className="max-w-5xl mx-auto px-6">
+
+          <h2 className="text-5xl md:text-6xl font-black mb-8">
+            Refund and Cancellation Policy
+          </h2>
+
+          <p className="text-gray-300 text-lg leading-8 mb-8">
+            At Sanchay, we value our customers' satisfaction. Since we provide a
+            digital SaaS (Software as a Service) product, our policy is as
+            follows:
+          </p>
+
+          <div className="space-y-5">
+
+            {[
+              "Cancellation: You can cancel your subscription at any time from the app settings. Once cancelled, you will continue to have access to the premium features until the end of your current billing cycle, monthly or yearly.",
+              "Refunds: We offer a 7-day money-back guarantee for first-time subscribers. If you are not satisfied with our Pro features, you can request a full refund within 7 days of your initial purchase.",
+              "Post 7 Days: No refunds will be provided after 7 days of purchase. However, your service will remain active until the subscription period expires.",
+              "How to request a refund: Please email us at connecttsanchay@gmail.com with your registered mobile number and payment receipt. Refunds are processed within 5-7 working days to the original payment source.",
+            ].map((item) => (
+
+              <div
+                key={item}
+                className="bg-white/5 border border-white/10 rounded-3xl p-6 flex gap-4"
+              >
+
+                <CheckCircle2 className="text-purple-400 shrink-0 mt-1" />
+
+                <p className="text-gray-300 leading-8">
+                  {item}
+                </p>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        id="contact-us"
+        className="max-w-7xl mx-auto px-6 py-28"
+      >
+
+        <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 items-start">
+
+          <div>
+
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
+              Contact Us
+            </h2>
+
+            <p className="text-gray-400 text-lg leading-8">
+              If you have any questions, feedback, or need support, we are here
+              to help.
+            </p>
+
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-5">
+
+            {[
+              ["Registered Business Name", "Chandrapal Singh"],
+              ["Support Email", "connecttsanchay@gmail.com"],
+              ["Phone Number", "+91 7078399463"],
+              ["Business Address", "Chakarnagar, Etawah, Uttar Pradesh - 206125"],
+              ["Operating Hours", "Monday to Saturday, 10:00 AM to 6:00 PM"],
+            ].map(([label, value]) => (
+
+              <div
+                key={label}
+                className="bg-white/5 border border-white/10 rounded-3xl p-6"
+              >
+
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-purple-300">
+                  {label}
+                </p>
+
+                <p className="text-xl font-bold mt-3 leading-8">
+                  {value}
+                </p>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section
+        id="privacy-policy"
+        className="py-28 bg-[#120c23]"
+      >
+
+        <div className="max-w-5xl mx-auto px-6">
+
+          <h2 className="text-5xl md:text-6xl font-black mb-8">
+            Privacy Policy
+          </h2>
+
+          <p className="text-gray-300 text-lg leading-8 mb-8">
+            Sanchay ("we", "our", or "us") is committed to protecting your
+            business data.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-5">
+
+            {[
+              ["Data Collection", "We collect your business name, contact details, and inventory data solely to provide billing and sync services."],
+              ["Data Security", "Your data is encrypted and stored securely on Supabase cloud servers. Local data on your device is also encrypted."],
+              ["Third Parties", "We do not sell or share your business data with any third-party marketing agencies. We only share necessary data with Razorpay to process your payments securely."],
+              ["User Control", "You have full control over your data and can request account deletion at any time through the app."],
+            ].map(([title, desc]) => (
+
+              <div
+                key={title}
+                className="bg-white/5 border border-white/10 rounded-3xl p-6"
+              >
+
+                <h3 className="text-2xl font-bold">
+                  {title}
+                </h3>
+
+                <p className="text-gray-300 leading-8 mt-4">
+                  {desc}
+                </p>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
       {/* CTA */}
 
       <section className="px-6 pb-28">
@@ -799,7 +1332,7 @@ export default function App() {
 
         <div className="max-w-7xl mx-auto px-6 py-16">
 
-          <div className="grid md:grid-cols-3 gap-14">
+          <div className="grid md:grid-cols-4 gap-14">
 
             <div>
 
@@ -835,6 +1368,30 @@ export default function App() {
                 modern Indian businesses.
 
               </p>
+
+            </div>
+
+            <div>
+
+              <h3 className="text-2xl font-bold mb-6">
+                Company
+              </h3>
+
+              <div className="space-y-4 text-gray-400">
+
+                {policyLinks.map((link) => (
+
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="block hover:text-white transition"
+                  >
+                    {link.label}
+                  </a>
+
+                ))}
+
+              </div>
 
             </div>
 
