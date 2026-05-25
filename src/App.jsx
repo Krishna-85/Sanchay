@@ -1,6 +1,6 @@
 // src/App.jsx
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ShieldCheck,
   XCircle,
@@ -17,6 +17,9 @@ import {
   CalendarCheck,
   PhoneCall,
   MessageCircle,
+  Mail,
+  UserCheck,
+  Trash2,
 } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -222,6 +225,16 @@ const policyLinks = [
   { label: "Refund Policy", href: "#refund-policy" },
   { label: "Contact Us", href: "#contact-us" },
   { label: "Privacy Policy", href: "#privacy-policy" },
+  { label: "Delete Account", href: "/delete-account" },
+];
+
+const deletionData = [
+  "account/profile data",
+  "shop/business data",
+  "product data",
+  "customer/khata data",
+  "billing/invoice data",
+  "sales reports linked to the account",
 ];
 
 const whatsappNumber = "917078399463";
@@ -260,7 +273,7 @@ const FeatureStatus = ({ value }) => {
   );
 };
 
-export default function App() {
+function HomePage() {
   const [demoForm, setDemoForm] = useState({
     name: "",
     business: "",
@@ -1472,4 +1485,185 @@ export default function App() {
 
     </div>
   );
+}
+
+function DeleteAccountPage() {
+  return (
+    <div className="min-h-screen bg-[#0b0717] text-white">
+      <nav className="border-b border-white/10 bg-black/20 backdrop-blur-xl">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-5">
+          <a href="/" className="flex items-center gap-3">
+            <img
+              src="/optimized/sanchay-logo.webp"
+              alt="Sanchay logo"
+              className="w-12 h-12 rounded-xl"
+              width="48"
+              height="48"
+            />
+            <span className="text-2xl font-bold">Sanchay</span>
+          </a>
+
+          <a
+            href="/"
+            className="text-sm font-semibold text-gray-300 hover:text-white transition"
+          >
+            Back to Home
+          </a>
+        </div>
+      </nav>
+
+      <main className="max-w-6xl mx-auto px-6 py-16 md:py-24">
+        <section className="grid lg:grid-cols-[0.95fr_1.05fr] gap-10 items-start">
+          <div>
+            <div className="inline-flex items-center gap-3 bg-white/10 border border-white/10 px-5 py-2 rounded-full text-white mb-8">
+              <ShieldCheck size={18} />
+              Sanchay Apps
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-black leading-tight">
+              Sanchay Billing Software
+              <span className="block text-purple-400">
+                Account Deletion
+              </span>
+            </h1>
+
+            <p className="text-gray-300 text-lg leading-8 mt-7">
+              This page explains how users of Sanchay Billing Software,
+              developed by Sanchay Apps, can request deletion of their account
+              and associated app data.
+            </p>
+
+            <div className="mt-9 bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8">
+              <h2 className="text-2xl font-bold mb-4">
+                How to delete your account
+              </h2>
+              <div className="space-y-5 text-gray-300 leading-8">
+                <p>
+                  You can delete your account directly from the Sanchay Billing
+                  Software app by tapping the{" "}
+                  <span className="font-semibold text-white">
+                    Delete My Account
+                  </span>{" "}
+                  button, typing{" "}
+                  <span className="font-semibold text-white">DELETE</span> to
+                  confirm, and submitting the request. Your account will then be
+                  deleted.
+                </p>
+                <p>
+                  You can also email us at{" "}
+                  <a
+                    href="mailto:connectsanchay@gmail.com?subject=Delete%20my%20Sanchay%20account"
+                    className="text-purple-300 font-semibold hover:text-purple-200"
+                  >
+                    connectsanchay@gmail.com
+                  </a>{" "}
+                  with the subject{" "}
+                  <span className="font-semibold text-white">
+                    "Delete my Sanchay account"
+                  </span>
+                  . Please include your registered Google/email account so we
+                  can verify and process the request.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-5">
+            {[
+              {
+                icon: <Trash2 className="text-purple-300" />,
+                title: "Option 1: Delete from the app",
+                desc: "Open the Sanchay Billing Software app, tap Delete My Account, type DELETE to confirm, and submit the request.",
+              },
+              {
+                icon: <Mail className="text-purple-300" />,
+                title: "Option 2: Email us",
+                desc: "Send your deletion request to connectsanchay@gmail.com with the required subject and registered Google/email account.",
+              },
+              {
+                icon: <UserCheck className="text-purple-300" />,
+                title: "Account and associated data are deleted",
+                desc: "After confirmation or verification, your account and associated data are removed from active systems.",
+              },
+            ].map((step) => (
+              <article
+                key={step.title}
+                className="bg-white/5 border border-white/10 rounded-3xl p-6 flex gap-4"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center shrink-0">
+                  {step.icon}
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold">{step.title}</h2>
+                  <p className="text-gray-300 leading-7 mt-2">{step.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid lg:grid-cols-2 gap-8 mt-14">
+          <div className="bg-[#120c23] border border-white/10 rounded-3xl p-6 md:p-8">
+            <h2 className="text-3xl font-black mb-6">
+              Data that will be deleted
+            </h2>
+
+            <div className="space-y-4">
+              {deletionData.map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="text-purple-400 shrink-0 mt-1" />
+                  <p className="text-gray-300 leading-7">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-[#120c23] border border-white/10 rounded-3xl p-6 md:p-8">
+            <h2 className="text-3xl font-black mb-6">Retention</h2>
+
+            <p className="text-gray-300 text-lg leading-8">
+              Some data may be retained for up to 30 days for backup, security,
+              fraud prevention, or legal compliance. After this retention
+              period, eligible deleted data is removed according to our data
+              deletion process.
+            </p>
+
+            <div className="mt-8 rounded-2xl bg-white/5 border border-white/10 p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-purple-300">
+                Support Email
+              </p>
+              <a
+                href="mailto:connectsanchay@gmail.com?subject=Delete%20my%20Sanchay%20account"
+                className="block text-xl md:text-2xl font-bold mt-3 break-words hover:text-purple-200"
+              >
+                connectsanchay@gmail.com
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between gap-4 text-gray-500">
+          <p>© 2026 Sanchay Apps. All Rights Reserved.</p>
+          <a href="/" className="hover:text-white transition">
+            Sanchay Billing Software
+          </a>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default function App() {
+  const path = window.location.pathname.replace(/\/$/, "") || "/";
+  const isDeleteAccountPage = path === "/delete-account";
+
+  useEffect(() => {
+    document.title = isDeleteAccountPage
+      ? "Sanchay Billing Software – Account Deletion"
+      : "Sanchay Billing Software";
+  }, [isDeleteAccountPage]);
+
+  return isDeleteAccountPage ? <DeleteAccountPage /> : <HomePage />;
 }
